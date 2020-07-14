@@ -1,0 +1,3 @@
+rm -f test2out.txt test2err.txt 
+
+./simpsh --rdonly input.txt --creat --append --rdwr test2out.txt --creat --excl --wronly test2err.txt --pipe --pipe --command 0 1 2 sleep 1 --command 0 4 2 cat --command 3 6 2 sort -f --command 5 1 2 wc --close 4 --close 6 --wait

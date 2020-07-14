@@ -1,0 +1,3 @@
+./simpsh --rdonly input.txt --creat --rdwr test1out.txt --creat --wronly test1err.txt --pipe --pipe --creat --wronly translate.txt --command 0 4 2 sed 's/ //g' --command 3 6 2 sort --command 5 7 2 tr '[a-z]' '[A-Z]' --close 4 --close 5 --close 6 --wait
+
+

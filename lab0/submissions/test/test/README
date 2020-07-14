@@ -1,0 +1,59 @@
+NAME: Marie Chu
+EMAIL: mariechu@ucla.edu
+ID: 905116878
+
+Included files:
+(1) lab0.c - source code for I/O redirection along with specified arguments
+(2) Makefile - build the lab0 executable and tarball, clean files created by Makefile, and perform smoke test
+(3) backtrace.png - shows a segfault and associated stack-trace
+(4) breakpoint.png -shows a breakpoint at line that causes segmentation fault and inspects pointer is equal to NULL
+(5) README - decription of included files, smoke-test cases in check target, sources used
+(6) script- bash script to run smoke test cases for check target in Makefile
+
+Smoke-test cases:
+(1) Checks that lab0 correctly exits with exit status 0 when redirecting from input to output.
+(2) Checks that lab0 correctly redirects and contents of input and output file are the same.
+(3) Checks that unrecongnized argument correctly exits with status 1.
+(4) Checks that using non-existent file as input correctly exits with status 2.
+(5) Checks that using output file without write permissions correctly exits with status 3.
+(6) Checks that --catch successfully catches segmentation fault and exits with exit status 4 when --segfault is specified.
+(7) Checks that --dump-core nullifies effects of --catch and correctly exits with status 139.
+
+#!/bin/bash
+
+echo "Input file" >> in.txt
+./lab0 --input in.txt --output out.txt
+if [ $? -ne 0 ]; then
+        echo "Exit code should be 0, not $?";
+fi
+cmp -s in.txt out.txt;
+if [ $? -ne 0 ]; then
+        echo "I/O redirection unsuccessful";
+fi
+./lab0 --random
+if [ $? -ne 1 ]; then
+        echo "Exit code should be 1, not $?";
+fi
+./lab0 --input nonexistent.txt
+if [ $? -ne 2 ]; then
+        echo "Exit code should be 2, not $?";
+fi
+chmod u-w out.txt
+./lab0 --input in.txt --output out.txt
+if [ $? -ne 3 ]; then
+        echo "Exit code should be 3, not $?";
+fi
+chmod u+w out.txt
+./lab0 --segfault --catch
+if [ $? -ne 4 ]; then
+        echo "Exit code should be 4, not $?";
+fi
+./lab0 --segfault --catch --dump-core
+if [ $? -ne 139 ]; then
+        echo "Exit code should be 139, not $?";
+fi
+
+rm in.txt out.txt
+
+Get Long-opt example:
+https://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Option-Example.html

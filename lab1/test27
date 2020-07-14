@@ -1,0 +1,42 @@
+#!/bin/bash
+
+printf "" >c27err.txt
+printf "" >c27out.txt
+rm -f test27io.txt
+CURRENT_DIR=$(/usr/local/cs/bin/pwd)
+rm -rf dir_test27
+mkdir dir_test27
+
+./simpsh --creat --rdwr test27io.txt --chdir dir_test27 --creat --rdwr test27io.txt --command 0 1 0 /usr/local/cs/bin/pwd --chdir dir_test27 --chdir .. --creat --wronly test27out.txt --command 0 2 0 /usr/local/cs/bin/pwd > c27out.txt 2> c27err.txt
+T27RC=$?
+sleep 1 
+if [ $T27RC == 1 ]; then
+	echo "Passed 1";
+else
+	echo "FAILED 1 with exit code $?, supposed to be 1";
+fi
+
+if [ -e test27io.txt ]; then 
+	echo "Passed 2";
+fi
+if [ ! -s test27io.txt ]; then
+	echo "Passed 3";
+fi
+if [  -s c27err.txt ]; then
+	echo "Passed 4";
+fi
+if [ ! -s c27out.txt ]; then
+	echo "Passed 5";
+fi
+if grep -q "$CURRENT_DIR" ./dir_test27/test27io.txt; then
+	echo "Passed 6 $CURRENT_DIR";
+fi
+if grep -q "dir_test27" ./dir_test27/test27io.txt; then
+	echo "Passed 7";
+fi
+if [ -e test27out.txt ]; then
+	echo "Passed 8";
+fi
+if [ "$CURRENT_DIR" == "$(cat test27out.txt)" ]; then
+	echo "Passed 9";
+fi

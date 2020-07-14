@@ -1,0 +1,42 @@
+SIMPSH:
+
+
+Test case 1:
+./simpsh --profile --rdonly input.txt --creat --append --rdwr test2out.txt --creat --excl --wronly test2err.txt --pipe --command 0 1 2 sleep 1 --command 0 4 2 cat --command 3 1 2 wc --close 4 --wait
+Child usage | User: 0secs 2483usec | System: 0secs 3707usec
+Total usage | User: 0secs 317usec | System: 0secs 545usec
+Child usage | User: 0secs 0usec | System: 0secs 4056usec
+Total usage | User: 0secs 127usec | System: 0secs 690usec
+Child usage | User: 0secs 0usec | System: 0secs 7698usec
+Total usage | User: 0secs 934usec | System: 0secs 0usec
+Child usage | User: 0secs 953usec | System: 0secs 2452usec
+Total usage | User: 0secs 695usec | System: 0secs 139usec
+Child usage | User: 0secs 0usec | System: 0secs 3482usec
+Total usage | User: 0secs 355usec | System: 0secs 511usec
+
+Test case 2:
+./simpsh --rdonly input.txt --creat --rdwr test1out.txt --creat --wronly test1err.txt --pipe --pipe --creat --wronly translate.txt --command 0 4 2 sed 's/ //g' --command 3 6 2 sort --command 5 7 2 tr [A-Z] [a-z] --close 4 --close 5 --close 6 --wait
+Child usage | User: 0secs 2688usec | System: 0secs 2482usec
+Total usage | User: 0secs 0usec | System: 0secs 815usec
+Child usage | User: 0secs 2776usec | System: 0secs 2371usec
+Total usage | User: 0secs 642usec | System: 0secs 98usec
+Child usage | User: 0secs 1742usec | System: 0secs 3713usec
+Total usage | User: 0secs 0usec | System: 0secs 725usec
+Child usage | User: 0secs 1159usec | System: 0secs 3515usec
+Total usage | User: 0secs 0usec | System: 0secs 664usec
+Child usage | User: 0secs 2361usec | System: 0secs 2647usec
+Total usage | User: 0secs 0usec | System: 0secs 657usec
+
+Test case 3:
+./simpsh --pipe --rdonly input.txt --creat --wronly out.txt --creat --wronly err.txt --pipe --command 2 1 4 tr Child usage | User: 0secs 1614usec | System: 0secs 3308usec
+Total usage | User: 0secs 388usec | System: 0secs 388usec
+Child usage | User: 0secs 2705usec | System: 0secs 968usec
+Total usage | User: 0secs 0usec | System: 0secs 715usec
+Child usage | User: 0secs 926usec | System: 0secs 3724usec
+Total usage | User: 0secs 0usec | System: 0secs 709usec
+Child usage | User: 0secs 0usec | System: 0secs 3775usec
+Total usage | User: 0secs 0usec | System: 0secs 712usec
+Child usage | User: 0secs 0usec | System: 0secs 3698usec
+Total usage | User: 0secs 681usec | System: 0secs 0usec
+Child usage | User: 0secs 0usec | System: 0secs 3618usec
+Total usage | User: 0secs 641usec | System: 0secs 0usec

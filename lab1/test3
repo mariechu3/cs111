@@ -1,0 +1,5 @@
+
+
+#test3
+tr " " "\n" < input.txt 2>err.txt | sort -d 2> err.txt |tail -n 100 2> err.txt |grep -c y 2> err.txt
+times

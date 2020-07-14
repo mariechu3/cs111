@@ -1,0 +1,5 @@
+exit 0 tr   \n 
+exit 0 head -n 20 
+exit 0 grep -c n 
+Child usage | User: 0secs 0usec | System: 0secs 3618usec
+Total usage | User: 0secs 641usec | System: 0secs 0usec

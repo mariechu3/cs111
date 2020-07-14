@@ -1,0 +1,17 @@
+NAME: Marie Chu
+EMAIL: mariechu@ucla.edu
+ID: 905116878
+
+Contents of tarball:
+(1) my_beaglebone.jpg- a selfie, holding the assembled Beaglebone (showing the front of the board)
+(2) connected.png- screenshot of USB terminal command session connected to my system, showing that I gave it a name and configured netowrk access
+(3) copy.png- screenshot from a local session in which hello world was copied from laptop to Beaglebone
+(4) build_run.png- screenshot from a WIFI SSH session in which hello world was build and run
+(5) git.png- screenshot from a WIFI SSH session in which git was installed a a repository was cloned
+(6) Makefile- builds the tarball
+(7) README- file containing the serial number of the Beaglebone and the WiFi MAC address and a descriptiong of the above files
+
+S/N: BBGW17090232
+WIFI MAC: 2c:f7:f1:06:6a:68
+
+

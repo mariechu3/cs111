@@ -1,0 +1,32 @@
+Name: Marie Chu
+email: mariechu@ucla.edu
+UID: 905116878
+
+Tar File Contexts:
+(1) simpsh.c - source file of the Simpleton Shell implementation
+(2) Makefile - creates the executable simpsh and tar file
+(3) README - known limitations and extra features
+(4) script - contains the smoke test cases
+
+Possible bugs:
+I was failing test case 27 so I wrote a separate script for it testing each part
+of the if statement. I found out that it was failing at the exit code == 1 line
+so I printed out the exit code it was exiting with, which was also 1. I was very
+confused why it was failing when the exit code was also 1 and at one point commented
+out the sleep(1) right above it. I ran the script again and it passed the check.
+After uncommenting the sleep(1), the script passed again so I was not sure
+what caused it to fail in the first place and why it starting working after.
+
+I had diffculty implementing command and there were many ummentioned exceptions 
+that I was not quite sure how to handle, but the TA said if it is not explicity 
+mentioned in the specs then I do not have to deal with it. I had trouble with a 
+segmentation fault for case 2 but I added {0,0,0,0} to the end of the struct I 
+passed in and fixed the problem. 
+
+Test cases:
+I checked that invalid arguments and valid arguments exited with the correct codes.
+I also made sure that mutiple command options and multiple arguments to command
+options worked as needed. I did some basic checking for file descriptor flags create
+and excl and also checked abort, ignore, default. I checked simple cases of chdir and
+wait. 
+

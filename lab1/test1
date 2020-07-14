@@ -1,0 +1,6 @@
+
+#test 1
+sed 's/ //g' <input.txt 2> test1err.txt | sort 2>test1err.txt | tr '[A-Z]''[a-z]' >translate.txt 2> test1err.txt
+
+
+times

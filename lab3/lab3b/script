@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+
+for i in {1..100..1}
+do
+rm -f corrupted.csv
+./cindy.sh EXT2_test.csv
+cp corrupted.csv corrupted$i.csv
+./lab3b.py corrupted.csv | sort > mine.txt
+./cindy.py corrupted.csv | sort > hers.txt
+printf "This is test $i results: "
+diff -u mine.txt hers.txt
+echo ""
+done

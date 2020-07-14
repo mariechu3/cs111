@@ -1,0 +1,2 @@
+./simpsh --pipe --rdonly input.txt --creat --wronly out.txt --creat --wronly err.txt --pipe --pipe --command 2 1 4 tr ' ' '\n' --command 0 6 4 sort -d --command 5 8 4 tail -n 100 --command 7 3 4 grep -c y --close 0 --close 1 --close 6 --close 8 --wait
+

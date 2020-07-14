@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sleep 2
+(sort < a | cat b - | tr A-Z a-z > c) 2>> d 
+sleep 2
+times
+

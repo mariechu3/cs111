@@ -1,0 +1,124 @@
+NAME: Marie Chu
+UID: 905116878
+EMAIL: mariechu@ucla.edu
+SLIPDAYS: 0
+
+Files included in tar:
+(1) README- Answer to questions and the list of contents in tar file
+and their descriptions
+(2) lab2_list.c- source coude to handle sync, yield, thread, list, and
+iteration options
+(3) lab2_list.gp- script to generate all the required graphs
+(4) lab2b_list.csv- input file for gnuplot with data of runs
+(5) tests.sh- test cases to generate lines for csv file
+(6) SortedList.h- header file with function declarations for SortedList.c
+(7) SortedList.c- source file to handle insert, delete, lookup, and length
+(8) *.png- 5 graphs generated using gnuplot
+(9) Makefile- includes targets of tests, profile, graphs, dist, and clean
+(10)profile.out- sampling of where CPU spends most time with a spin lock
+
+QUESTION 2.3.1 - CPU time in the basic list implementation
+Where do you belive most of the CPU time is spent in the 1 and 
+2-thread list tests?
+    Most of the CPU time in the 1 and 2 thread list tests are spent
+    in the insert, lookup, length, and delete functions.
+Why do you believe these to be the most expensive parts of the code?
+    These are the most explensive parts of the code because there is 
+    a lot of iterations of going through the list and finding where to
+    insert, going through the list and finding the length, etc. 
+Where do you believe most of the CPU time is being spent in the 
+high-thread spin-lock tests?
+    Most of the CPU time being spent in the high-thread spin-lock
+    tests are going into spinning the lock and wasting CPU time.
+    Since there is a high amount of contention and all the spin 
+    lock does is poll during its quantum, if there is only one lock
+    and multiple threads trying to accquire it, the threads will have
+    to wait longer with each additional thread trying to obtain the lock.
+Where do you believe most of the CPU time is being spent in the high-
+thread mutex tests?
+    Most of the CPU time being spent in the high-thread mutex tests
+    may be due to putting the threads to sleep and waking them up.
+    Since there is only one lock, all the other threads except for 
+    one will have to be put to sleep and awoken when the lock is 
+    available again. 
+
+QUESTION 2.3.2 -Execution Profiling:
+Where (what lines of code) are consuming most of the CPU time when the
+spin-lock version of the list exerciser is run with a large number of threads?
+     The profiler indicated that the majority of the CPU time was spent 
+     trying to obtain a lock (especially the lock acquisition right before
+     inserting). There were smaller numbers of samplings for the other spin 
+     locks and some cumulative time for the lookup and insert functions.
+Why does this operation become so expensive with large numbers of threads?
+     This operation becomes so expensive with large numbers of threads because 
+     the thread is still spinning and using CPU time when it is polling to
+     try and acquire the lock. When there is more contention for a single 
+     lock, each thread will have to wait longer because they have to wait
+     for T1 to complete the critical section and unlock, then T2, then whatever
+     other thread is ahead of them in trying to obtain the lock.
+
+QUESTION 2.3.3 - Mutex Wait Time:
+Look at the average time per operations (vs.#threads) and the average wait-for
+mutex time (vs. #threads)
+Why does the average lock-wait time rise so dramatically with the number of 
+contending threads?
+     The average lock time rises so dramatically with the number of contending
+     threads because when the thread tried to obtain a mutex lock that is 
+     unavailable, it is put to sleep until another thread signals it to wake
+     up with the release of the lock. If there are more threads waiting on a
+     lock, it would take longer to actually acquire it. It's similar to how
+     if you are required to wash your hands before eating, but there is only
+     one sink, the more people there are in line, the longer the average time
+     of wait will be in order to wash your hands. The spike in average 
+     lock-wait time is especially drastic from one thread to 2 threads because 
+     when there is only one thread, that thread will never have to wait/sleep
+     to acquire a lock because they are the only thread that wants the lock 
+     and should  always unlock it first before they ask for it again.
+Why does the completion time per operation rise (less dramatically) with the 
+number of contending threads?
+     Since the only thing really causing the completion time to increase 
+     is due to the locks, in comparison, the total completion time per 
+     operation would increase less dramatically because there are other
+     things contributing to the total completion time that do not increase
+     that dramatically with more threads. For example, I have a class of 
+     children where one child is allergic to peanuts but 19 others aren't.
+     By adding another child who is allergic to peanuts, the total amount of
+     children with peanut allergies increases 100% when comparing only to
+     children with peanut allergies, but increases the class average by only
+     about 5%.
+How is it possible for the wait time per operation to go up faster (or higher)
+than the completion time per operation?
+     It is possible for the wait time per operation to go up faster than
+     the completion time per operations because of my previous explanation.
+     There are other things contributing to the completion time per operation
+     that do not increase as drastically as obtaining a lock does when there
+     are more threads. Thus in comparison, the completion time per operation
+     goes up more slowly than the wait time per operation.
+
+QUESTION 2.3.4 -Performance of Partitioned Lists
+Explain the change in performance of the synchronized methods as a function of 
+the number of lists.
+    With more lists, there was more throughput. This is due to the fact that 
+    more operations can be done in parallel, thus lowering the overall time 
+    to completion and average operation time. Since throughput was the
+    inverse of the average operation time, the most lists there were the higher
+    the throughput is.
+Should the thorughput continue increasing as the number of lists is further
+increased? If not, explain why not.
+    The throughput would continue increasing to some degree. If only 16 threads
+    are allowed to run in parallel, adding more threads would just add the
+    overhead of context switches. Additionally length would become slower because
+    you would have to acquire more locks and there is balance between how many
+    sublists would maximize throughput for a given amount of iterations. (If there
+    is only 10 iterations and you have 10 sublists, you are essentially creating
+    10 lists with only one element each which isn't very efficient). 
+It seems reasonable to suggest the throughput of an N-way partitioned list should
+be equivalent to the throughput of a single list with fewer (1/N) threads. Does
+this appear to be true in the above curves? If not, explain why not.
+    A single list still appears to be slower eventhough the number of operations 
+    each thread should be doing is the same. This is because a single list only
+    has a single lock so every thread must be contending for the same lock
+    and will be blocked. However, with multiple lists and multiple locks it is
+    possible that a lock that a thread wants is currently not acquired by another
+    thread. Since there is more parallelism, the timing has to be more exact
+    for two or more threads to contend for the same lock at the same time.

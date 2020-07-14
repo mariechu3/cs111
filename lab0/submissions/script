@@ -1,0 +1,39 @@
+#Name: Marie Chu
+#email: mariechu@ucla.edu
+#UID: 905116878
+
+#!/bin/bash
+
+echo "Input file" >> in.txt
+./lab0 --input in.txt --output out.txt
+if [ $? -ne 0 ]; then
+	echo "Exit code should be 0, not $?";
+fi
+cmp -s in.txt out.txt; 
+if [ $? -ne 0 ]; then
+	echo "I/O redirection unsuccessful";
+fi
+./lab0 --random
+if [ $? -ne 1 ]; then
+	echo "Exit code should be 1, not $?";
+fi
+./lab0 --input nonexistent.txt 
+if [ $? -ne 2 ]; then
+	echo "Exit code should be 2, not $?";
+fi
+chmod u-w out.txt
+./lab0 --input in.txt --output out.txt
+if [ $? -ne 3 ]; then 
+	echo "Exit code should be 3, not $?";
+fi
+chmod u+w out.txt
+./lab0 --segfault --catch
+if [ $? -ne 4 ]; then
+	echo "Exit code should be 4, not $?";
+fi
+./lab0 --segfault --catch --dump-core
+if [ $? -ne 139 ]; then
+	echo "Exit code should be 139, not $?";
+fi
+
+rm in.txt out.txt

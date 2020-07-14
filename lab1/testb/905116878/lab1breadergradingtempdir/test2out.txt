@@ -1,0 +1,11 @@
+total 56
+drwxr-xr-x 4 molly csugrad  4096 Oct 16 18:02 .
+drwxr-xr-x 3 molly csugrad  4096 Oct 16 18:02 ..
+drwxr-xr-x 2 molly csugrad  4096 Oct 16 18:02 dir
+-rwxr-xr-x 1 molly csugrad  8168 Oct 14 10:44 grading_helper
+-rw-r--r-- 1 molly csugrad  6911 Oct 16 18:02 lab1-905116878.tar.gz
+drwxr-xr-x 2 molly csugrad  4096 Oct 16 18:02 lab1breadergradingtempdir
+-rw-r--r-- 1 molly csugrad   276 Oct 16 14:36 Makefile
+-rw-r--r-- 1 molly csugrad  1582 Oct 16 14:31 README
+-rw-r--r-- 1 molly csugrad 10112 Oct 16 14:28 simpsh.c
+-rwxr--r-- 1 molly csugrad  2884 Oct 14 14:46 test.sh
