@@ -1,0 +1,21 @@
+backed up files from school server: 
+
+double check this:
+origin  https://github.com/mariechu3/cs111.git (fetch)
+origin  https://github.com/mariechu3/cs111.git (push)
+[molly@lnxsrv09 ~/oldclasses/cs111]$ git push origin master
+Username for 'https://github.com': mariechu3
+Password for 'https://mariechu3@github.com':
+Enumerating objects: 397, done.
+Counting objects: 100% (397/397), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (363/363), done.
+Writing objects: 100% (397/397), 33.25 MiB | 2.75 MiB/s, done.
+Total 397 (delta 151), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (151/151), done.
+remote: warning: GH001: Large files detected. You may want to try Git Large File                                                                                                              Storage - https://git-lfs.github.com.
+remote: warning: See http://git.io/iEPt8g for more information.
+remote: warning: File lab1/testc/905116878/lab1creadergradingtempdir/pg98_100.tx                                                                                                             t is 74.07 MB; this is larger than GitHub's recommended maximum file size of 50.                                                                                                             00 MB
+remote: warning: File lab1/testc/905116878/lab1creadergradingtempdir/test3out.tx                                                                                                             t is 74.07 MB; this is larger than GitHub's recommended maximum file size of 50.                                                                                                             00 MB
+To https://github.com/mariechu3/cs111.git
+ * [new branch]      master -> master
